@@ -8,6 +8,7 @@ public class AmazoneAwsS3Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AmazoneAwsS3Application.class, args);
+		
 	}
 
 }
