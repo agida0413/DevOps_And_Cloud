@@ -38,3 +38,6 @@
 - `docker-compose ps` # 실행 중인 서비스 목록
 - `docker-compose scale <서비스이름>=<개수>` # 서비스 인스턴스 수 조정
 - `docker-compose exec <서비스이름> <명령어>` # 특정 서비스에서 명령어 실행
+
+
+- `docker build -t test123:1.1 .`  # 현디렉토리 도커파일 빌드
