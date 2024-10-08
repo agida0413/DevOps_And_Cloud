@@ -1,0 +1,21 @@
+services: 
+  aroundhub_db:  # MySQL 서비스
+    image: mariadb:10.6  # 사용할 MariaDB 이미지
+    container_name: db_master2  # 컨테이너 이름
+    restart: always  # 항상 재시작
+    environment:  # 환경 변수 설정 (타이포 수정)
+      MARIADB_ROOT_PASSWORD: arroundhyb12#
+      MARIADB_DATABASE: springboot
+      MARIADB_USER: flature
+      MARIADB_PASSWORD: aroundhub12#
+    volumes:  # 데이터 영속성 및 설정 파일 마운트
+      - ./master_db/data:/var/lib/mysql
+      - ./master_db/config/:/etc/mysql/conf.d
+    ports:  # 포트 매핑
+      - "3308:3306"  
+
+  arroundhub_redis:  # Redis 서비스 (이름 수정)
+    image: redis:7.0.0  # 사용할 Redis 이미지
+    restart: always  # 항상 재시작
+    ports:
+      - "6381:6379"  # 포트 매핑

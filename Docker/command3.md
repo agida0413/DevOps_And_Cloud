@@ -104,3 +104,15 @@ SHELL ["<셸명>", "<옵션>"] # 예: SHELL ["/bin/bash", "-c"]
 
 ### Dockerfile 빌드 명령어
 - `docker build -t test123:1.1 .`  # 현재 디렉토리의 Dockerfile로 이미지 빌드
+
+
+### DockerCOMPOSE
+- `docker-compose -f [yml 이름] up`
+
+
+### DOCKER 이미지 생성 및 저장 
+
+- `docker commit db_master2 test123` # 컨테이너를 이미지로 저장 
+- `docker save -o test123.tar:latest` # 이미지를 tar 파일로 이미지 로컬에 저장 
+- `docker load -i test123.tar` # tar 파일 로드
+- `docker export db_master2 > test123.tar` # 컨테이너를 tar파일로 저장  
