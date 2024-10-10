@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>파일 업로드 테스트</title>
+</head>
+<body>
+    <h1>파일 업로드 테스트</h1>
+    <form th:action="@{/s3/upload}" method="post" enctype="multipart/form-data">
+        <label for="image">이미지 파일 선택:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit">업로드</button>
+    </form>
+
+    <div th:if="${profileImage != null}">
+        <h2>업로드된 이미지:</h2>
+        <img th:src="${profileImage}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    </div>
+</body>
+</html>
