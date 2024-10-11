@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+services:
+  - docker 
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t agida0413/node2 -f Dockerfile.dev .
+script: 
+  - docker run -e CI=true agida0413/node2 npm run test -- --coverage
+
+after_success:
+  - echo "Test success"  
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: docker
+  env: "docker-env"
+  bucket_name: "s3_name"
+  bucket_path: "s3_name"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
