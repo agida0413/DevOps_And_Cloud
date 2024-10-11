@@ -9,7 +9,24 @@ CMD ["echo","hello"]
 
 
 
+## 도커 볼륨 
 
+docker run -d  -p 5000:8080 -v /usr/src/app32/node_modules -v %cd%:/usr/src/app32 agida0413/node2
+
+
+##도커 컴포즈 
+
+
+docker-compose up 
+## 소스 수정시 이미지 다시 빌드 후 컴포즈
+docker-compose up --build  
+
+#도커 컴포즈 삭제 
+docker-compose down
+
+
+## Docker.dev
+docker build -f Dockerfile.dev .
 
 
 
