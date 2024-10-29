@@ -14,7 +14,7 @@ public class Controller {
 
     @GetMapping
     public ResponseEntity<?> test(){
-        System.out.println("sdadasdadad");
+
         log.info("this server run ");
         return ResponseEntity.ok("GOOD");
     }

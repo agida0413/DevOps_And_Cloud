@@ -22,6 +22,6 @@ FROM openjdk:17-jdk-slim
 
 # JAR 파일을 /app.jar로 복사
 COPY --from=builder /backend/build/libs/*.jar app.jar
-
+EXPOSE 8080
 # 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "/app.jar"]
