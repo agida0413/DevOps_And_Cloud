@@ -1,27 +1,22 @@
 version: '3.8'
 
 services:
-  backend1:
-    image: kimyong120413/backtest
-    container_name: backend1
-  backend2:
-    image: kimyong120413/backtest
-    container_name: backend2
-  backend3:
-    image: kimyong120413/backtest
-    container_name: backend3
-  backend4:
-    image: kimyong120413/backtest
-    container_name: backend4
   nginx:
     restart: always
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: kimyong120413/nginx-https:latest
     ports:
       - "80:80"
-    links:
-      - backend1
-      - backend2
-      - backend3
-      - backend4
+      - "443:443"
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    container_name: nginx
+    command: /bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    container_name: certbot  # 이름 수정
+    entrypoint: /bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'

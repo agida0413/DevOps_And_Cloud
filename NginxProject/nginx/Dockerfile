@@ -1,5 +1,5 @@
 # nginx/Dockerfile 예시
 FROM nginx:alpine
 
-EXPOSE 80
+EXPOSE 80 443
 COPY default.conf /etc/nginx/conf.d/default.conf
